@@ -56,10 +56,7 @@ def solve(examples):
         print(data)
         for number in extra_number:
             data.append(number[1])
-        if len(data) == 0:
-            out.append(0)
-        else:
-            print(data)
+        print(data)
 
         match len(data):
                 case (0):
