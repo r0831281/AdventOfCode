@@ -1,7 +1,8 @@
 import re
 examples = []
 
-
+#when parsing ther numbers first when theres only two numbers and one is from text, the numbers are in the wrong order, maybe 
+#keep pos of number as string and when the pos is after where the text number is found insert the text number in front of it
 
 with open('input.txt', 'r') as f:
     for line in f:
@@ -31,8 +32,11 @@ def find_written_numbers(text):
                 break
 
             match_end = match_start + len(word)
-            numeric_values.append((word, sorted_word_to_num[word]))
+            numeric_values.append((word, sorted_word_to_num[word], match_start, match_end))
             start = match_end
+
+    # Sort the results based on the starting index of each match
+    numeric_values.sort(key=lambda x: x[2])
 
     return numeric_values
 
