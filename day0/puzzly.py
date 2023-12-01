@@ -32,7 +32,7 @@ def find_written_numbers(text):
                 break
 
             match_end = match_start + len(word)
-            numeric_values.append((word, sorted_word_to_num[word], match_start, match_end))
+            numeric_values.append((word, sorted_word_to_num[word], match_start))
             start = match_end
 
     # Sort the results based on the starting index of each match
@@ -49,7 +49,7 @@ def solve(examples):
         for char in example:
             if char.isdigit():
                 integer = int(char)
-                data.append(integer)
+                data.append((integer, example.index(char)))
             else:
                 rest.append(char)
                 
@@ -59,7 +59,10 @@ def solve(examples):
         print(extra_number)
         print(data)
         for number in extra_number:
-            data.append(number[1])
+            data.append((number[1], number[2]))
+
+        data.sort(key=lambda x: x[1])
+        data = [x[0] for x in data]
         print(data)
 
         match len(data):
